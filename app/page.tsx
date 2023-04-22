@@ -17,7 +17,7 @@ export default function Home() {
       center: [-74.5, 40], // starting position [lng, lat]
       zoom: 9, // starting zoom
     });
-  });
+  }, []);
 
   return (
     <main className={styles.main}>
