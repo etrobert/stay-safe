@@ -33,7 +33,6 @@ export default function Home() {
           id: 'earthquakes-heat',
           type: 'heatmap',
           source: 'earthquakes',
-          maxzoom: 9,
           paint: {
             // Increase the heatmap weight based on frequency and property magnitude
             'heatmap-weight': [
@@ -64,7 +63,7 @@ export default function Home() {
               ['linear'],
               ['heatmap-density'],
               0,
-              'white',
+              'transparent',
               1,
               'orange',
             ],
@@ -77,16 +76,6 @@ export default function Home() {
               2,
               9,
               20,
-            ],
-            // Transition from heatmap to circle layer by zoom level
-            'heatmap-opacity': [
-              'interpolate',
-              ['linear'],
-              ['zoom'],
-              7,
-              1,
-              9,
-              0,
             ],
           },
         },
