@@ -68,11 +68,11 @@ export default function Home() {
               0,
               'transparent',
               0.3,
-              'yellow',
+              '#FAD958',
               0.6,
-              'orange',
+              '#F7C443',
               1,
-              'red',
+              '#F4AC3D',
             ],
             // Adjust the heatmap radius by zoom level
             'heatmap-radius': [
@@ -125,11 +125,11 @@ export default function Home() {
               0,
               'transparent',
               0.3,
-              'yellow',
+              '#C3D043',
               0.6,
-              'green',
+              '#8DB63D',
               1,
-              'blue',
+              '#6AA343',
             ],
             // Adjust the heatmap radius by zoom level
             'heatmap-radius': [
