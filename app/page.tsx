@@ -1,19 +1,9 @@
 'use client';
-import { createRoot } from 'react-dom/client';
 import { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import styles from './page.module.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import Report from './Report';
-
-const createReportElement = () => {
-  const container = document.createElement('div');
-  const root = createRoot(container);
-  root.render(<Report />);
-  return container;
-};
-
-const reportElement = createReportElement();
+import reportElement from './reportElement';
 
 export default function Home() {
   useEffect(() => {
