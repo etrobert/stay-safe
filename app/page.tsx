@@ -1,10 +1,21 @@
 'use client';
-import { useEffect } from 'react';
+import { createRoot } from 'react-dom/client';
+import { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import styles from './page.module.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import Report from './Report';
+
+const createReportElement = () => {
+  const container = document.createElement('div');
+  const root = createRoot(container);
+  root.render(<Report />);
+  return container;
+};
 
 export default function Home() {
+  const voteElement = useRef(createReportElement());
+
   useEffect(() => {
     // TO MAKE THE MAP APPEAR YOU MUST
     // ADD YOUR ACCESS TOKEN FROM
@@ -16,6 +27,12 @@ export default function Home() {
       style: 'mapbox://styles/mapbox/streets-v12', // style URL
       center: [-74.5, 40], // starting position [lng, lat]
       zoom: 9, // starting zoom
+    });
+
+    map.on('load', () => {
+      const marker = new mapboxgl.Marker({ element: voteElement.current })
+        .setLngLat([-74.5, 40])
+        .addTo(map);
     });
   }, []);
 
