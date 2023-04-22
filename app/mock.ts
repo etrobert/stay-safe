@@ -1,6 +1,13 @@
 const generateMagnitude = () => 2 * Math.floor((Math.random() * 2) % 2) - 1;
 
-const generateCoordinates = () => [-75.4 + Math.random(), 40 + Math.random()];
+const baseCoordinates = {
+  lng: 13,
+  lat: 52,
+};
+const generateCoordinates = () => [
+  baseCoordinates.lng + Math.random(),
+  baseCoordinates.lat + Math.random(),
+];
 
 const generateFeature = () => ({
   type: 'Feature',
@@ -15,7 +22,7 @@ const generateFeature = () => ({
 });
 
 const generateFeatures = () =>
-  Array.from(Array(100).keys()).map(() => generateFeature());
+  Array.from(Array(800).keys()).map(() => generateFeature());
 
 const generateData = () => ({
   type: 'FeatureCollection',
