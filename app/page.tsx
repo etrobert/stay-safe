@@ -14,7 +14,7 @@ export default function Home() {
       'pk.eyJ1IjoiZXRyb2JlcnQiLCJhIjoiY2xncnRyYml5MG1xODNmb2g0eHp0ZjVnbSJ9.HQ15TYvSzgdrUWLZxjcFdg';
     const map = new mapboxgl.Map({
       container: styles.map, // container ID
-      style: 'mapbox://styles/mapbox/streets-v12', // style URL
+      style: "mapbox://styles/mapbox/light-v11", // style URL
       center: [-74.5, 40], // starting position [lng, lat]
       zoom: 9, // starting zoom
     });
