@@ -145,19 +145,28 @@ export default function Home() {
         },
         'waterway-label'
       );
-    map.on("click", ({ lngLat }) => {
-      if (marker.current !== null) {
-        marker.current.remove();
+      map.on('click', ({ lngLat }) => {
+        if (marker.current !== null) {
+          marker.current.remove();
 
-        return (marker.current = null);
-      }
+          return (marker.current = null);
+        }
 
         let newMarker = new mapboxgl.Marker({ element: reportElement() })
           .setLngLat([lngLat.lng, lngLat.lat])
           .addTo(map);
 
         marker.current = newMarker;
-    });
+      });
+      map.addControl(
+        new mapboxgl.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: true,
+          },
+          trackUserLocation: true,
+          showUserHeading: true,
+        })
+      );
     });
   }, []);
 
@@ -166,4 +175,4 @@ export default function Home() {
       <div id={styles.map} />
     </main>
   );
-};
+}
