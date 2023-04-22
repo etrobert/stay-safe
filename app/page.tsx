@@ -16,7 +16,10 @@ export default function Home() {
     const map = new mapboxgl.Map({
       container: styles.map, // container ID
       style: 'mapbox://styles/mapbox/light-v11', // style URL
-      center: [-74.5, 40], // starting position [lng, lat]
+      center: {
+        lng: 13.371645238800056,
+        lat: 52.50898406761115,
+      }, // starting position [lng, lat]
       zoom: 9, // starting zoom
     });
 
@@ -143,6 +146,7 @@ export default function Home() {
       );
 
       map.on('click', ({ lngLat }) => {
+        console.log(lngLat);
         if (marker.current !== null) marker.current.remove();
 
         let newMarker = new mapboxgl.Marker({ element: reportElement() })
