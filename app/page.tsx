@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import styles from './page.module.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -7,6 +7,7 @@ import reportElement from './reportElement';
 
 export default function Home() {
   const marker = useRef<mapboxgl.Marker | null>(null);
+
   useEffect(() => {
     // TO MAKE THE MAP APPEAR YOU MUST
     // ADD YOUR ACCESS TOKEN FROM
@@ -144,17 +145,19 @@ export default function Home() {
         },
         'waterway-label'
       );
+    map.on("click", ({ lngLat }) => {
+      if (marker.current !== null) {
+        marker.current.remove();
 
-      map.on('click', ({ lngLat }) => {
-        console.log(lngLat);
-        if (marker.current !== null) marker.current.remove();
+        return (marker.current = null);
+      }
 
         let newMarker = new mapboxgl.Marker({ element: reportElement() })
           .setLngLat([lngLat.lng, lngLat.lat])
           .addTo(map);
 
         marker.current = newMarker;
-      });
+    });
     });
   }, []);
 
@@ -163,4 +166,4 @@ export default function Home() {
       <div id={styles.map} />
     </main>
   );
-}
+};
