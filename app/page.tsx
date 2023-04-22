@@ -13,9 +13,9 @@ const createReportElement = () => {
   return container;
 };
 
-export default function Home() {
-  const voteElement = useRef(createReportElement());
+const reportElement = createReportElement();
 
+export default function Home() {
   useEffect(() => {
     // TO MAKE THE MAP APPEAR YOU MUST
     // ADD YOUR ACCESS TOKEN FROM
@@ -30,7 +30,7 @@ export default function Home() {
     });
 
     map.on('load', () => {
-      const marker = new mapboxgl.Marker({ element: voteElement.current })
+      const marker = new mapboxgl.Marker({ element: reportElement })
         .setLngLat([-74.5, 40])
         .addTo(map);
     });
