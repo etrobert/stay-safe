@@ -29,6 +29,63 @@ export default function Home() {
       });
       map.addLayer(
         {
+          id: 'earthquakes-heat',
+          type: 'heatmap',
+          source: 'earthquakes',
+          paint: {
+            // Increase the heatmap weight based on frequency and property magnitude
+            'heatmap-weight': [
+              'interpolate',
+              ['linear'],
+              ['get', 'mag'],
+              0,
+              0,
+              3,
+              1,
+            ],
+            // Increase the heatmap color weight weight by zoom level
+            // heatmap-intensity is a multiplier on top of heatmap-weight
+            'heatmap-intensity': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              0,
+              1,
+              9,
+              3,
+            ],
+            // Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
+            // Begin color ramp at 0-stop with a 0-transparancy color
+            // to create a blur-like effect.
+            'heatmap-color': [
+              'interpolate',
+              ['linear'],
+              ['heatmap-density'],
+              0,
+              'transparent',
+              0.3,
+              'yellow',
+              0.6,
+              'orange',
+              1,
+              'red',
+            ],
+            // Adjust the heatmap radius by zoom level
+            'heatmap-radius': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              0,
+              2,
+              9,
+              20,
+            ],
+          },
+        },
+        'waterway-label'
+      );
+      map.addLayer(
+        {
           id: 'earthquakes-heat-2',
           type: 'heatmap',
           source: 'earthquakes',
@@ -63,61 +120,12 @@ export default function Home() {
               ['heatmap-density'],
               0,
               'transparent',
-              1,
+              0.3,
+              'yellow',
+              0.6,
               'green',
-            ],
-            // Adjust the heatmap radius by zoom level
-            'heatmap-radius': [
-              'interpolate',
-              ['linear'],
-              ['zoom'],
-              0,
-              2,
-              9,
-              20,
-            ],
-          },
-        },
-        'waterway-label'
-      );
-      map.addLayer(
-        {
-          id: 'earthquakes-heat',
-          type: 'heatmap',
-          source: 'earthquakes',
-          paint: {
-            // Increase the heatmap weight based on frequency and property magnitude
-            'heatmap-weight': [
-              'interpolate',
-              ['linear'],
-              ['get', 'mag'],
-              0,
-              0,
-              6,
               1,
-            ],
-            // Increase the heatmap color weight weight by zoom level
-            // heatmap-intensity is a multiplier on top of heatmap-weight
-            'heatmap-intensity': [
-              'interpolate',
-              ['linear'],
-              ['zoom'],
-              0,
-              1,
-              9,
-              3,
-            ],
-            // Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
-            // Begin color ramp at 0-stop with a 0-transparancy color
-            // to create a blur-like effect.
-            'heatmap-color': [
-              'interpolate',
-              ['linear'],
-              ['heatmap-density'],
-              0,
-              'transparent',
-              1,
-              'orange',
+              'blue',
             ],
             // Adjust the heatmap radius by zoom level
             'heatmap-radius': [
